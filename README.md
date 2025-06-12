@@ -1,10 +1,10 @@
 # Projeto Pet Shop
 
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/petshop-backend?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/iuricode/petshop-backend?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/iuricode/petshop-backend?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/petshop-backend?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/petshop-backend?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/laysonbatista/petshop-backend?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/laysonbatista/petshop-backend?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/laysonbatista/petshop-backend?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/laysonbatista/petshop-backend?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/laysonbatista/petshop-backend?style=for-the-badge)
 
 <img src="imagem.png" alt="Exemplo imagem">
 
