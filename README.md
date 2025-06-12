@@ -8,7 +8,7 @@
 
 <img src="imagem.png" alt="Exemplo imagem">
 
-> Sistema de gestão de petshop com foco na informatização dos serviços prestados. O sistema permitirá o cadastro de proprietários e seus animais, o agendamento de serviços estéticos e veterinários, o registro de atendimentos, além do controle de vacinação Também contemplará o cadastro de profissionais, gerenciamento de raças e consultas ao histórico clínico dos animais.
+> Sistema de gestão de petshop com foco na informatização dos serviços prestados. O sistema permitirá o cadastro de proprietários e seus animais, o agendamento de serviços estéticos e veterinários, o registro de atendimentos, além do controle de vacinação. Também contemplará o cadastro de profissionais, gerenciamento de raças e consultas ao histórico clínico dos animais.
 
 ### Ajustes e melhorias
 
