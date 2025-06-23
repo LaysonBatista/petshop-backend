@@ -39,10 +39,6 @@ public class Animal {
         this.especie = especie;
     }
 
-    public Raca getRaca() {
-        return raca;
-    }
-
     public void setRaca(Raca raca) {
         this.raca = raca;
     }

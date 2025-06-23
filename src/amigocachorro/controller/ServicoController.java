@@ -10,31 +10,11 @@ public class ServicoController {
     private List<Servico> servicos;
     private Menu view;
 
-    public ServicoController(Menu view) {
-        this.view = view;
-        this.servicos = new ArrayList<>();
-        inicializarServicosPadrao(); // Opcional: cadastra serviços iniciais
-    }
 
     public ServicoController(List<Servico> servicos, Menu view) {
         this.servicos = servicos;
         this.view = view;
-    }
-
-    /**
-     * Cadastra um novo serviço no sistema
-     */
-    public void cadastrarServico() {
-        view.exibirMensagem("\n=== CADASTRO DE SERVIÇO ===");
-
-        String nome = view.lerString("Nome do serviço: ");
-        String tipo = selecionarTipoServico();
-        double preco = view.lerDouble("Preço: R$ ");
-        String detalhes = view.lerString("Detalhamento: ");
-
-        Servico novoServico = new Servico(nome, tipo, preco, detalhes);
-        servicos.add(novoServico);
-        view.exibirMensagem("Serviço cadastrado com sucesso!");
+        inicializarServicosPadrao();
     }
 
     /**

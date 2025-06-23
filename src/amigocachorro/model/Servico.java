@@ -13,7 +13,6 @@ public class Servico {
         this.detalhamento = d;
     }
 
-
     public String getNomeServico() {
         return nomeServico;
     }
@@ -45,6 +44,7 @@ public class Servico {
     public void setDetalhamento(String detalhamento) {
         this.detalhamento = detalhamento;
     }
+
     public String toStringServico() {
         return "nome do serviço = " + nomeServico + ", tipo = " + tipo + ", preço = "
                 + preco + ", detalhamento = " + detalhamento + " ";

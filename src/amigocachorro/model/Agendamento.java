@@ -44,8 +44,10 @@ public class Agendamento {
     public void setProprietario(Proprietario proprietario) {
         this.proprietario = proprietario;
     }
+
+
     public String toString() {
-        return "Agendamento\n serviço = " + this.servico + ", Data e Hora = " + this.dataHora + " Pet = "+
+        return "\nAgendamento:\nServiço = " + servico.getNomeServico() + ", Data e Hora = " + this.dataHora + " Pet = "+
                 this.animal+ " Proprietário = "+this.proprietario+ " ";
     }
 

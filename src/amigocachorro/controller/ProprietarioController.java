@@ -32,10 +32,17 @@ public class ProprietarioController {
             return;
         }
 
-        String nome = view.lerString("Nome completo: ");
-        String email = view.lerString("E-mail: ");
-        String telefone = view.lerString("Telefone: ");
-        String endereco = view.lerString("Endereço: ");
+        String nome = solicitarNomeValido();
+        if (nome == null) return;
+
+        String email = solicitarEmailValido();
+        if (email == null) return;
+
+        String telefone = solicitarTelefoneValido();
+        if (telefone == null) return;
+
+        String endereco = solicitarEnderecoValido();
+        if (endereco == null) return;
 
         Proprietario novoProprietario = new Proprietario(cpf, nome, email, telefone, endereco);
         proprietarios.add(novoProprietario);
@@ -72,14 +79,14 @@ public class ProprietarioController {
     /**
      * Valida formato do CPF (apenas formato, não dígitos verificadores)
      */
-    private boolean validarCPF(String cpf) {
+    public boolean validarCPF(String cpf) {
         return cpf != null && cpf.matches("\\d{3}\\.?\\d{3}\\.?\\d{3}\\-?\\d{2}");
     }
 
     /**
      * Verifica se CPF já está cadastrado
      */
-    private boolean cpfJaCadastrado(String cpf) {
+    public boolean cpfJaCadastrado(String cpf) {
         return proprietarios.stream()
                 .anyMatch(p -> p.getCpfProprietario().equals(cpf));
     }
@@ -125,4 +132,104 @@ public class ProprietarioController {
 
         view.exibirMensagem("Dados atualizados com sucesso!");
     }
+
+    // Métodos auxiliares para validação de campos
+    private String solicitarNomeValido() {
+        while (true) {
+            try {
+                String nome = view.lerString("Nome completo (ou 'cancelar' para sair): ").trim();
+
+                if (nome.equalsIgnoreCase("cancelar")) {
+                    view.exibirMensagem("Operação cancelada.");
+                    return null;
+                }
+
+                if (nome.isEmpty()) {
+                    view.exibirMensagem("Nome não pode ser vazio!");
+                    continue;
+                }
+
+                if (!nome.matches("[\\p{L} ]+")) {
+                    view.exibirMensagem("Nome deve conter apenas letras e espaços!");
+                    continue;
+                }
+
+                return nome;
+
+            } catch (Exception e) {
+                view.exibirMensagem("Erro ao processar nome: " + e.getMessage());
+            }
+        }
+    }
+
+    private String solicitarEmailValido() {
+        while (true) {
+            try {
+                String email = view.lerString("E-mail (ou 'cancelar' para sair): ").trim().toLowerCase();
+
+                if (email.equalsIgnoreCase("cancelar")) {
+                    view.exibirMensagem("Operação cancelada.");
+                    return null;
+                }
+
+                if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+                    view.exibirMensagem("Formato de e-mail inválido! Exemplo: exemplo@dominio.com");
+                    continue;
+                }
+
+                return email;
+
+            } catch (Exception e) {
+                view.exibirMensagem("Erro ao processar e-mail: " + e.getMessage());
+            }
+        }
+    }
+
+    private String solicitarTelefoneValido() {
+        while (true) {
+            try {
+                String telefone = view.lerString("Telefone com DDD (somente números, ou 'cancelar' para sair): ")
+                        .replaceAll("[^0-9]", "");
+
+                if (telefone.equalsIgnoreCase("cancelar")) {
+                    view.exibirMensagem("Operação cancelada.");
+                    return null;
+                }
+
+                if (telefone.length() < 10 || telefone.length() > 11) {
+                    view.exibirMensagem("Telefone inválido! Digite DDD + número (10 ou 11 dígitos)");
+                    continue;
+                }
+
+                return telefone;
+
+            } catch (Exception e) {
+                view.exibirMensagem("Erro ao processar telefone: " + e.getMessage());
+            }
+        }
+    }
+
+    private String solicitarEnderecoValido() {
+        while (true) {
+            try {
+                String endereco = view.lerString("Endereço (Rua, Nº, Bairro, Cidade - ou 'cancelar' para sair): ").trim();
+
+                if (endereco.equalsIgnoreCase("cancelar")) {
+                    view.exibirMensagem("Operação cancelada.");
+                    return null;
+                }
+
+                if (endereco.isEmpty()) {
+                    view.exibirMensagem("Endereço não pode ser vazio!");
+                    continue;
+                }
+
+                return endereco;
+
+            } catch (Exception e) {
+                view.exibirMensagem("Erro ao processar endereço: " + e.getMessage());
+            }
+        }
+    }
+
 }

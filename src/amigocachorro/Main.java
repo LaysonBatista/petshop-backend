@@ -22,16 +22,17 @@ public class Main {
         // Cria a View (Menu) com as dependências necessárias
         Menu menu = new Menu(listaProprietarios, listaAnimais);
 
-        // 3. Cria o controller com as dependências
+        // Cria o controller com as dependências
         ProprietarioController proprietarioController = new ProprietarioController(listaProprietarios, menu);
         AnimalController animalController = new AnimalController(menu, listaProprietarios, listaAnimais);
         ServicoController servicoController = new ServicoController(listaServicos, menu);
         AgendamentoController agendamentoController = new AgendamentoController(menu, animalController, servicoController);
 
 
-        // 4. Configura o controller no Menu
+        // Configura o controller no Menu
         menu.configurarProprietarioControllers(proprietarioController);
         menu.configurarAgendamentoController(agendamentoController);
+        menu.configurarServicoController(servicoController);
 
         // Inicia o sistema
         System.out.println("\n=== SISTEMA DE GERENCIAMENTO PET SHOP ===");

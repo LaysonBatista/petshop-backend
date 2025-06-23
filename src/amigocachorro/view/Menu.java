@@ -29,6 +29,8 @@ public class Menu {
         this.animalController = new AnimalController(this, listaProprietarios, listaAnimais);
     }
 
+
+    // Métodos de Leitura de dados
     public String lerString(String prompt) {
         System.out.print(prompt);
         return teclado.nextLine();
@@ -47,6 +49,7 @@ public class Menu {
         }
     }
 
+    // Ler int com parâmetro polimorfismo
     public int lerInt(String prompt) {
         System.out.print(prompt);
         try {
@@ -122,25 +125,20 @@ public class Menu {
                     animalController.cadastrarPet(); // Chama o método de cadastro de animal
                     break;
                 case 3:
-                    agendamentoController.agendarServico();
+                    // Primeiro agenda o serviço e obtém o agendamento criado
+                    try {
+                        Agendamento novoAgendamento = agendamentoController.agendarServico();
+                        if (novoAgendamento != null) {
+                            agendamentoController.finalizarAgendamento(novoAgendamento);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Erro durante o agendamento: " + e.getMessage());
+                    }
                     break;
                 case 4:
-                    servicoController.cadastrarServico(); // Chama o método de cadastro de serviço
-                    break;
-                case 5:
-                    System.out.println("=== Cadastro de Profissional ===");
-                    System.out.println("Funcionalidade em desenvolvimento: Cadastrar Profissional.\n");
-                    // Implementar aqui a lógica para cadastrar profissionais
-                    break;
-                case 6:
-                    System.out.println("=== Realizar Pagamento ===");
-                    System.out.println("Funcionalidade em desenvolvimento: Realizar Pagamento.\n");
-                    // Implementar aqui a lógica para realizar pagamentos
-                    break;
-                case 7:
                     exibirCadastros();
                     break;
-                case 8:
+                case 5:
                     atualizarCadastroTutor();
                     break;
                 case 0:
@@ -164,11 +162,8 @@ public class Menu {
         System.out.println("1 - CADASTRAR PROPRIETÁRIO");
         System.out.println("2 - CADASTRAR PET");
         System.out.println("3 - AGENDAR SERVIÇO");
-        System.out.println("4 - CADASTRAR SERVIÇO");
-        System.out.println("5 - CADASTRAR PROFISSIONAL");
-        System.out.println("6 - REALIZAR PAGAMENTO");
-        System.out.println("7 - EXIBIR CADASTRO");
-        System.out.println("8 - ATUALIZAR CADASTRO");
+        System.out.println("4 - EXIBIR CADASTRO");
+        System.out.println("5 - ATUALIZAR CADASTRO DE PROPRIETÁRIO");
         System.out.println("0 - SAIR");
         System.out.print("Digite sua opção: ");
     }
@@ -185,8 +180,6 @@ public class Menu {
             return -1;
         }
     }
-
-
 
 
     /**
