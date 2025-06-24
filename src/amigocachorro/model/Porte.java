@@ -15,7 +15,7 @@ public enum Porte {
         return descricao;
     }
 
-    // Método para exibir opções (já existente)
+    // Método para exibir opções
     public static void exibirOpcoes() {
         System.out.println("\nPortes disponíveis:");
         for (int i = 0; i < values().length; i++) {
@@ -23,7 +23,7 @@ public enum Porte {
         }
     }
 
-    // Método para obter porte por opção (já existente)
+    // Método para obter porte por opção
     public static Porte obterPorOpcao(int opcao) {
         if (opcao < 1 || opcao > values().length) {
             throw new IllegalArgumentException("Opção inválida!");

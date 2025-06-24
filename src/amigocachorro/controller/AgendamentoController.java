@@ -1,6 +1,7 @@
 package amigocachorro.controller;
 
 import amigocachorro.model.*;
+import amigocachorro.util.GeradorArquivo;
 import amigocachorro.view.Menu;
 
 import java.time.LocalDateTime;
@@ -58,7 +59,6 @@ public class AgendamentoController {
 
 
     public void finalizarAgendamento(Agendamento agendamento) {
-        // Mostrar opções de pagamento
         if (agendamento == null) {
             view.exibirMensagem("❌ Erro: Agendamento inválido!");
             return;
@@ -162,22 +162,6 @@ public class AgendamentoController {
         }
     }
 
-
-    /**
-     * Lista todos os agendamentos
-     */
-    public void listarAgendamentos() {
-        if (agendamentos.isEmpty()) {
-            view.exibirMensagem("\nNenhum agendamento cadastrado.");
-            return;
-        }
-
-        view.exibirMensagem("\n=== AGENDAMENTOS ===");
-        for (int i = 0; i < agendamentos.size(); i++) {
-            view.exibirMensagem((i+1) + " - " + agendamentos.get(i).toString());
-        }
-    }
-
     /**
      * Permite ao usuário selecionar um animal cadastrado
      */
@@ -245,10 +229,4 @@ public class AgendamentoController {
         }
     }
 
-    /**
-     * Retorna todos os agendamentos
-     */
-    public List<Agendamento> getTodosAgendamentos() {
-        return new ArrayList<>(agendamentos); // Retorna cópia para evitar modificações externas
-    }
 }

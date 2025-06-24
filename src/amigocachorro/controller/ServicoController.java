@@ -17,26 +17,6 @@ public class ServicoController {
         inicializarServicosPadrao();
     }
 
-    /**
-     * Permite ao usuário selecionar o tipo de serviço
-     */
-    private String selecionarTipoServico() {
-        view.exibirMensagem("\nTipos disponíveis:");
-        view.exibirMensagem("1 - Banho");
-        view.exibirMensagem("2 - Tosa");
-        view.exibirMensagem("3 - Veterinário");
-        view.exibirMensagem("4 - Hospedagem");
-
-        int opcao = view.lerInt("Digite o número correspondente ao tipo: ");
-
-        switch(opcao) {
-            case 1: return "Banho";
-            case 2: return "Tosa";
-            case 3: return "Veterinário";
-            case 4: return "Hospedagem";
-            default: return "Outros";
-        }
-    }
 
     /**
      * Lista todos os serviços cadastrados
@@ -53,15 +33,7 @@ public class ServicoController {
         }
     }
 
-    /**
-     * Busca um serviço pelo índice
-     */
-    public Servico buscarServico(int indice) {
-        if (indice >= 0 && indice < servicos.size()) {
-            return servicos.get(indice);
-        }
-        return null;
-    }
+
 
     /**
      * Retorna a lista completa de serviços
@@ -71,7 +43,7 @@ public class ServicoController {
     }
 
     /**
-     * Cadastra serviços padrão (opcional)
+     * Cadastra serviços padrões
      */
     private void inicializarServicosPadrao() {
         servicos.add(new Servico("Banho completo", "Banho", 50.0, "Banho com shampoo especial"));

@@ -1,5 +1,7 @@
 package amigocachorro.model;
 
+import java.time.format.DateTimeFormatter;
+
 public class Agendamento {
     private Servico servico;
     private String dataHora;
@@ -47,8 +49,14 @@ public class Agendamento {
 
 
     public String toString() {
-        return "\nAgendamento:\nServiço = " + servico.getNomeServico() + ", Data e Hora = " + this.dataHora + " Pet = "+
-                this.animal+ " Proprietário = "+this.proprietario+ " ";
+        return String.format(
+                "Serviço: %s | Data: %s | Pet: %s | Proprietário: %s",
+                servico.getNomeServico(),
+                dataHora,
+                animal.getAnimalNome(),
+                animal.getProprietario().getNomeProprietario()
+        );
     }
+
 
 }

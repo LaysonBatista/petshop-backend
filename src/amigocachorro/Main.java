@@ -4,14 +4,12 @@ import amigocachorro.controller.AgendamentoController;
 import amigocachorro.controller.AnimalController;
 import amigocachorro.controller.ProprietarioController;
 import amigocachorro.controller.ServicoController;
-import amigocachorro.model.Agendamento;
 import amigocachorro.model.Animal;
 import amigocachorro.model.Proprietario;
 import amigocachorro.model.Servico;
 import amigocachorro.view.Menu;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {

@@ -49,7 +49,7 @@ public class AnimalController  {
         // Validação do Nome do Animal
         String animalNome;
         do {
-            animalNome = view.lerString("Nome do animal: ").trim();
+            animalNome = view.lerString("\nNome do animal: ").trim();
             if (animalNome.isEmpty()) {
                 System.out.println("O nome não pode ser vazio!");
             } else if (!animalNome.matches("[\\p{L} ]+")) {

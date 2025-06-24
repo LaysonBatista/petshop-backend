@@ -34,7 +34,7 @@ public enum Raca {
     }
 
     // Método para obter raça filtrada por opção numérica
-    public static Raca obterRacaPorEspecieEOpcao(String especie, int opcao) {
+    public static Raca obterRacaPorOpcaoEEspecie(int opcao, String especie) {
         int count = 1;
         for (Raca raca : values()) {
             if (raca.especie.equalsIgnoreCase(especie)) {

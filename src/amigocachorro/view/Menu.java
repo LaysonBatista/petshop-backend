@@ -32,21 +32,19 @@ public class Menu {
 
     // Métodos de Leitura de dados
     public String lerString(String prompt) {
-        System.out.print(prompt);
-        return teclado.nextLine();
+        String texto;
+        do {
+            System.out.print(prompt);
+            texto = teclado.nextLine().trim();
+            if (texto.isEmpty()) {
+                System.out.println("Entrada inválida. Digite novamente.");
+            }
+        } while (texto.isEmpty());
+        return texto;
     }
 
-    public double lerDouble(String prompt) {
-        System.out.print(prompt);
-        try {
-            double valor = teclado.nextDouble();
-            teclado.nextLine(); // Limpa o buffer
-            return valor;
-        } catch (InputMismatchException e) {
-            teclado.nextLine();
-            System.out.println("Valor inválido! Digite um número decimal.");
-            return 0.0;
-        }
+    public String lerString() {
+        return teclado.nextLine();
     }
 
     // Ler int com parâmetro polimorfismo
@@ -108,9 +106,7 @@ public class Menu {
         }
 
         int opcao;
-
         System.out.println(" === BEM VINDO AO MEU AMIGO PET ===");
-
 
         do {
             exibirOpcoesMenu();
@@ -139,7 +135,7 @@ public class Menu {
                     exibirCadastros();
                     break;
                 case 5:
-                    atualizarCadastroTutor();
+                    proprietarioController.atualizarCadastroTutor();
                     break;
                 case 0:
                     System.out.println("Encerrando o sistema...");
@@ -168,7 +164,7 @@ public class Menu {
         System.out.print("Digite sua opção: ");
     }
 
-    private int lerOpcao() {
+    public int lerOpcao() {
         try {
             int opcao = teclado.nextInt();
             teclado.nextLine();
@@ -214,58 +210,6 @@ public class Menu {
         System.out.println("---------------------------\n");
     }
 
-    /**
-     * Permite ao usuário selecionar um proprietário existente e atualizar seus dados.
-     */
-    private void atualizarCadastroTutor() {
-        System.out.println("\n=== Alterar Dados do Proprietário ===");
-        if (listaProprietarios.isEmpty()) {
-            System.out.println("Nenhum proprietário cadastrado para alterar.\n");
-            return;
-        }
-
-        System.out.println("Proprietários disponíveis para alteração:");
-        for (int i = 0; i < listaProprietarios.size(); i++) {
-            System.out.println((i + 1) + " - " + listaProprietarios.get(i).getNomeProprietario() + " (CPF: " + listaProprietarios.get(i).getCpfProprietario() + ")");
-        }
-        System.out.print("Escolha o número do proprietário que deseja alterar: ");
-        int escolha = lerOpcao();
-
-
-        if (escolha < 1 || escolha > listaProprietarios.size()) {
-            System.out.println("Proprietário inválido! Por favor, escolha um número válido.\n");
-        } else {
-
-            Proprietario p = listaProprietarios.get(escolha - 1);
-            System.out.println("Alterando dados de: " + p.getNomeProprietario() + " (CPF: " + p.getCpfProprietario() + ")");
-            System.out.println("Deixe em branco e pressione ENTER para manter o valor atual.");
-            System.out.print("Novo nome (atual: " + p.getNomeProprietario() + "): ");
-            String novoNome = teclado.nextLine();
-            if (!novoNome.isEmpty()) {
-                p.setNomeProprietario(novoNome);
-            }
-
-            System.out.print("Novo e-mail (atual: " + p.getEmailProprietario() + "): ");
-            String novoEmail = teclado.nextLine();
-            if (!novoEmail.isEmpty()) {
-                p.setEmailProprietario(novoEmail);
-            }
-
-            System.out.print("Novo telefone (atual: " + p.getTelProprietario() + "): ");
-            String novoTelefone = teclado.nextLine();
-            if (!novoTelefone.isEmpty()) {
-                p.setTelProprietario(novoTelefone);
-            }
-
-            System.out.print("Novo endereço (atual: " + p.getEndrProprietario() + "): ");
-            String novoEndereco = teclado.nextLine();
-            if (!novoEndereco.isEmpty()) {
-                p.setEndrProprietario(novoEndereco);
-            }
-
-            System.out.println("Dados do proprietário alterados com sucesso!\n");
-        }
-    }
 
     public String selecionarEspecie() {
         int opcao = 0;
@@ -299,15 +243,29 @@ public class Menu {
     }
 
     public Raca selecionarRaca(String especie) {
-        Raca.exibirRacasPorEspecie(especie); // Chama o método do enum
-        System.out.print("Digite o número da raça: ");
-        int opcao = lerInt();
-        try {
-            return Raca.obterPorOpcao(opcao); // Converte o número para o enum Raca
-        } catch (IllegalArgumentException e) {
-            System.out.println("Raça inválida! " + e.getMessage());
-            return null; // Ou lançar exceção para ser tratada no Controller
-        }
+        Raca.exibirRacasPorEspecie(especie); // Mostra as opções disponíveis
+
+        Raca racaSelecionada = null;
+        boolean valido = false;
+
+        do {
+            System.out.print("Digite o número da raça: ");
+            int opcao = lerInt();
+
+            if (opcao == -1) { // LerInt retorna -1 se houve erro na digitação
+                System.out.println("Entrada inválida. Digite um número correspondente à raça.");
+                continue;
+            }
+
+            try {
+                racaSelecionada = Raca.obterRacaPorOpcaoEEspecie(opcao, especie);
+                valido = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Raça inválida! " + e.getMessage());
+            }
+        } while (!valido);
+
+        return racaSelecionada;
     }
 
     public Porte selecionarPorte() {
@@ -336,18 +294,6 @@ public class Menu {
 
     public void exibirMensagem(String mensagem) {
         System.out.println(mensagem);
-    }
-
-    public void exibirServicos(List<Servico> servicos) {
-        if (servicos.isEmpty()) {
-            System.out.println("Nenhum serviço disponível.");
-            return;
-        }
-
-        System.out.println("\n=== SERVIÇOS ===");
-        for (int i = 0; i < servicos.size(); i++) {
-            System.out.println((i+1) + " - " + servicos.get(i).toStringServico());
-        }
     }
 
 }

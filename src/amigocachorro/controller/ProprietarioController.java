@@ -64,17 +64,6 @@ public class ProprietarioController {
         }
     }
 
-    /**
-     * Busca um proprietário pelo CPF
-     */
-    public Proprietario buscarPorCpf(String cpf) {
-        for (Proprietario proprietario : proprietarios) {
-            if (proprietario.getCpfProprietario().equals(cpf)) {
-                return proprietario;
-            }
-        }
-        return null;
-    }
 
     /**
      * Valida formato do CPF (apenas formato, não dígitos verificadores)
@@ -91,46 +80,58 @@ public class ProprietarioController {
                 .anyMatch(p -> p.getCpfProprietario().equals(cpf));
     }
 
-    /**
-     * Retorna a lista completa de proprietários
-     */
-    public List<Proprietario> getTodosProprietarios() {
-        return new ArrayList<>(proprietarios); // Retorna cópia para evitar modificações externas
-    }
 
     /**
      * Atualiza dados de um proprietário
      */
-    public void atualizarProprietario(String cpf) {
-        Proprietario proprietario = buscarPorCpf(cpf);
-        if (proprietario == null) {
-            view.exibirMensagem("Proprietário não encontrado!");
+    public void atualizarCadastroTutor() {
+        System.out.println("\n=== Alterar Dados do Proprietário ===");
+        if (proprietarios.isEmpty()) {
+            System.out.println("Nenhum proprietário cadastrado para alterar.\n");
             return;
         }
 
-        view.exibirMensagem("\nEditando proprietário: " + proprietario.getNomeProprietario());
-
-        String novoNome = view.lerString("Novo nome (" + proprietario.getNomeProprietario() + "): ");
-        if (!novoNome.isEmpty()) {
-            proprietario.setNomeProprietario(novoNome);
+        System.out.println("Proprietários disponíveis para alteração:");
+        for (int i = 0; i < proprietarios.size(); i++) {
+            System.out.println((i + 1) + " - " + proprietarios.get(i).getNomeProprietario() + " (CPF: " + proprietarios.get(i).getCpfProprietario() + ")");
         }
+        System.out.print("Escolha o número do proprietário que deseja alterar: ");
+        int escolha = view.lerOpcao();
 
-        String novoEmail = view.lerString("Novo e-mail (" + proprietario.getEmailProprietario() + "): ");
-        if (!novoEmail.isEmpty()) {
-            proprietario.setEmailProprietario(novoEmail);
+
+        if (escolha < 1 || escolha > proprietarios.size()) {
+            System.out.println("Proprietário inválido! Por favor, escolha um número válido.\n");
+        } else {
+
+            Proprietario p = proprietarios.get(escolha - 1);
+            System.out.println("\nAlterando dados de: " + p.getNomeProprietario() + " (CPF: " + p.getCpfProprietario() + ")");
+            System.out.println("Deixe em branco e pressione ENTER para manter o valor atual.");
+            System.out.print("Novo nome (atual: " + p.getNomeProprietario() + "): ");
+            String novoNome = view.lerString();
+            if (!novoNome.isEmpty()) {
+                p.setNomeProprietario(novoNome);
+            }
+
+            System.out.print("Novo e-mail (atual: " + p.getEmailProprietario() + "): ");
+            String novoEmail = view.lerString();
+            if (!novoEmail.isEmpty()) {
+                p.setEmailProprietario(novoEmail);
+            }
+
+            System.out.print("Novo telefone (atual: " + p.getTelProprietario() + "): ");
+            String novoTelefone = view.lerString();
+            if (!novoTelefone.isEmpty()) {
+                p.setTelProprietario(novoTelefone);
+            }
+
+            System.out.print("Novo endereço (atual: " + p.getEndrProprietario() + "): ");
+            String novoEndereco = view.lerString();
+            if (!novoEndereco.isEmpty()) {
+                p.setEndrProprietario(novoEndereco);
+            }
+
+            System.out.println("Dados do proprietário alterados com sucesso!\n");
         }
-
-        String novoTelefone = view.lerString("Novo telefone (" + proprietario.getTelProprietario() + "): ");
-        if (!novoTelefone.isEmpty()) {
-            proprietario.setTelProprietario(novoTelefone);
-        }
-
-        String novoEndereco = view.lerString("Novo endereço (" + proprietario.getEndrProprietario() + "): ");
-        if (!novoEndereco.isEmpty()) {
-            proprietario.setEndrProprietario(novoEndereco);
-        }
-
-        view.exibirMensagem("Dados atualizados com sucesso!");
     }
 
     // Métodos auxiliares para validação de campos
@@ -231,5 +232,7 @@ public class ProprietarioController {
             }
         }
     }
+
+
 
 }
