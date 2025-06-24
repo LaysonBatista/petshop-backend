@@ -46,7 +46,7 @@ public class ProprietarioController {
 
         Proprietario novoProprietario = new Proprietario(cpf, nome, email, telefone, endereco);
         proprietarios.add(novoProprietario);
-        view.exibirMensagem("Proprietário cadastrado com sucesso!");
+        view.exibirMensagem("\nProprietário cadastrado com sucesso!");
     }
 
     /**

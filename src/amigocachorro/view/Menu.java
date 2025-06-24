@@ -268,12 +268,34 @@ public class Menu {
     }
 
     public String selecionarEspecie() {
-        System.out.println("\nEspécie do animal:");
-        System.out.println("1 - Cachorro");
-        System.out.println("2 - Gato");
-        System.out.print("Digite a opção: ");
-        int opcao = lerInt();
-        return (opcao == 1) ? "Cachorro" : "Gato";
+        int opcao = 0;
+        do {
+            System.out.println("\nEspécie do animal:");
+            System.out.println("1 - Cachorro");
+            System.out.println("2 - Gato");
+            System.out.print("Digite a opção (1-2): ");
+
+            try {
+                String input = teclado.nextLine().trim();
+
+                // Verifica se a entrada está vazia
+                if (input.isEmpty()) {
+                    System.out.println("Erro: Nenhuma opção digitada!");
+                    continue;
+                }
+
+                opcao = Integer.parseInt(input);
+
+                if (opcao == 1 || opcao == 2) {
+                    return (opcao == 1) ? "Cachorro" : "Gato";
+                } else {
+                    System.out.println("Opção inválida! Digite 1 para Cachorro ou 2 para Gato.");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: Digite apenas números (1 ou 2)!");
+            }
+        } while (true);
     }
 
     public Raca selecionarRaca(String especie) {
@@ -294,16 +316,23 @@ public class Menu {
             Porte.exibirOpcoes();
             System.out.print("Digite o número do porte: ");
             try {
-                int opcao = teclado.nextInt();
-                teclado.nextLine();
+                String input = teclado.nextLine(); // Lê toda a linha como String
+                int opcao = Integer.parseInt(input); // Tenta converter para int
                 porte = Porte.obterPorOpcao(opcao);
+
+                if (porte == null) {
+                    System.out.println("Opção inválida! Tente novamente.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Erro: Digite apenas números!");
             } catch (Exception e) {
-                teclado.nextLine();
                 System.out.println("Opção inválida! Tente novamente.");
             }
         } while (porte == null);
         return porte;
     }
+
+
 
     public void exibirMensagem(String mensagem) {
         System.out.println(mensagem);
