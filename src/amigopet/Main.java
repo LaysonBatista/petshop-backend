@@ -28,7 +28,7 @@ public class Main {
 
 
         // Configura o controller no Menu
-        menu.configurarProprietarioControllers(proprietarioController);
+        menu.configurarProprietarioController(proprietarioController);
         menu.configurarAgendamentoController(agendamentoController);
         menu.configurarServicoController(servicoController);
 

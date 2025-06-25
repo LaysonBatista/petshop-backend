@@ -45,11 +45,4 @@ public enum Raca {
         throw new IllegalArgumentException("Opção inválida!");
     }
 
-    // Método para converter int em Raca
-    public static Raca obterPorOpcao(int opcao) {
-        if (opcao < 1 || opcao > values().length) {
-            throw new IllegalArgumentException("Opção deve estar entre 1 e " + values().length);
-        }
-        return values()[opcao - 1];
-    }
 }

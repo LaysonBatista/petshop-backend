@@ -72,7 +72,7 @@ public class Menu {
         }
     }
 
-    public void configurarProprietarioControllers(ProprietarioController proprietarioController) {
+    public void configurarProprietarioController(ProprietarioController proprietarioController) {
         this.proprietarioController = proprietarioController;
     }
 
@@ -196,10 +196,6 @@ public class Menu {
         }
         System.out.println("---------------------------\n");
     }
-
-
-
-
 
 
     public void exibirMensagem(String mensagem) {

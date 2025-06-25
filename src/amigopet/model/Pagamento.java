@@ -7,13 +7,13 @@ public abstract class Pagamento {
     private double valor;
     private Agendamento agendamento;
 
-    public abstract String getTipoPagamento();
 
     public Pagamento(double valor, Agendamento agendamento) {
         this.data = LocalDate.now(); // Data atual automaticamente
         this.valor = valor;
         this.agendamento = agendamento;
     }
+    public abstract String getTipoPagamento();
 
     // Método abstrato que cada subclasse deve implementar
     public abstract boolean processarPagamento();

@@ -16,7 +16,6 @@ public class PagamentoCartao extends Pagamento {
 
     @Override
     public boolean processarPagamento() {
-        // Lógica específica para cartão
         return true; // Simulação - retornaria false se falhar
     }
 
