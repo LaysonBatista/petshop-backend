@@ -13,9 +13,3 @@
 ### Ajustes e melhorias
 
 O projeto ainda está em desenvolvimento.
-
-- [ ] Inicializar desenvolviemto das principais funcionalidades.
-- [ ] Tarefa 2
-- [ ] Tarefa 3
-- [ ] Tarefa 4
-- [ ] Tarefa 5
