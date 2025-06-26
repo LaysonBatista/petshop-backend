@@ -15,7 +15,6 @@ public class PagamentoPix extends Pagamento{
 
     @Override
     public boolean processarPagamento() {
-        // Lógica específica para PIX
         return true;
     }
 

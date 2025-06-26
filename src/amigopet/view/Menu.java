@@ -15,6 +15,8 @@ public class Menu {
     private Scanner teclado;
     private ArrayList<Proprietario> listaProprietarios;
     private ArrayList<Animal> listaAnimais;
+
+    // Controllers:
     private AnimalController animalController;
     private ServicoController servicoController;
     private AgendamentoController agendamentoController;
@@ -72,17 +74,6 @@ public class Menu {
         }
     }
 
-    public void configurarProprietarioController(ProprietarioController proprietarioController) {
-        this.proprietarioController = proprietarioController;
-    }
-
-    public void configurarServicoController(ServicoController controller) {
-        this.servicoController = controller;
-    }
-
-    public void configurarAgendamentoController(AgendamentoController controller) {
-        this.agendamentoController = controller;
-    }
 
 
     public void iniciar() {
@@ -128,7 +119,7 @@ public class Menu {
                     System.out.println("Encerrando o sistema...");
                     break;
                 default:
-                    System.out.println("Opção inválida! Por favor, escolha uma opção válida (0-8).\n");
+                    System.out.println("Opção inválida! Por favor, escolha uma opção válida (0-5).\n");
             }
         } while (opcao != 0);
 
@@ -198,6 +189,18 @@ public class Menu {
     }
 
 
+    // Faz referência para atributos
+    public void configurarProprietarioController(ProprietarioController proprietarioController) {
+        this.proprietarioController = proprietarioController;
+    }
+
+    public void configurarServicoController(ServicoController controller) {
+        this.servicoController = controller;
+    }
+
+    public void configurarAgendamentoController(AgendamentoController controller) {
+        this.agendamentoController = controller;
+    }
     public void exibirMensagem(String mensagem) {
         System.out.println(mensagem);
     }

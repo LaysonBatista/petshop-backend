@@ -30,7 +30,7 @@ public class AnimalController  {
 
         // Verifica se há tutores cadastrados
         if (listaProprietarios.isEmpty()) {
-            System.out.println("!ERRO! Nenhum tutor cadastrado. Cadastre um tutor primeiro para vincular um animal.\n");
+            System.out.println("Nenhum tutor cadastrado. Cadastre um tutor primeiro para vincular um animal.\n");
             return; }
 
         System.out.println("Escolha o tutor para este animal:");

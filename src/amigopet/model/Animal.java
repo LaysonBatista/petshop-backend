@@ -86,7 +86,7 @@ public class Animal {
     // Método para exibir informações do animal e do proprietário
     @Override
     public String toString() {
-        return "Animal: " + animalNome + " (" + especie + ", " + raca + ", " + porte + ", " + pelagem + ", " + idade + " anos, " + sexo + ")\n"
+        return "\nAnimal: " + animalNome + " (" + especie + ", " + raca + ", " + porte + ", " + pelagem + ", " + idade + " anos, " + sexo + ")\n"
                 + proprietario.toString();
     }
 }
